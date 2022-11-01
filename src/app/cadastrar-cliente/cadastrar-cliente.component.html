@@ -1,15 +1,21 @@
-<h4>Cadastro de Clientes</h4>
-<br />
-<div class="row">
+<h4>Formulário para Cadastro de Clientes</h4>
+<div class="row mt-4">
     <div class="col-md-4">
         <form>
-            <div class="form-group"> <label>Nome do Cliente:</label> <input type="text" class="form-control"
-                    placeholder="Digite aqui" /> </div>
-            <div class="form-group"> <label>Email do Cliente:</label> <input type="text" class="form-control"
-                    placeholder="Digite aqui" /> </div>
-            <div class="form-group"> <label>CPF:</label> <input type="text" class="form-control"
-                    placeholder="Digite aqui" /> </div>
-            <div class="form-group"> <input type="submit" value="Cadastrar Cliente" class="btn btn-success" /> </div>
-        </form>
+            <div class="mb-3">
+              <label for="nomeCliente" class="form-label">Nome do Cliente:</label>
+              <input type="text" class="form-control" id="nomeCliente" placeholder="Digite aqui">
+            </div>
+            <div class="mb-3">
+              <label for="emailCliente" class="form-label">E-mail:</label>
+              <input type="email" class="form-control" id="emailCliente" placeholder="Digite aqui">
+            </div>
+            <div class="mb-3">
+                <label for="cpfCliente" class="form-label">CPF:</label>
+                <input type="text" class="form-control" id="cpfCliente" placeholder="Digite aqui">
+              </div>
+            <button type="submit" class="btn btn-success">Cadastrar Cliente</button>
+          </form>
     </div>
 </div>
+
