@@ -12,6 +12,10 @@ import { RouterModule, Routes } from '@angular/router';
 //importando as bibliotecas para manipulação de formulários
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+//importando a biblioteca utilizada para realizar as chamadas para a API import
+import { HttpClientModule } from '@angular/common/http';
+import { EdicaoClienteComponent } from './edicao-cliente/edicao-cliente.component';
+
 //mapeando as rotas do projeto (caminhos para exibir componentes)
 const appRoutes : Routes = [ 
   { path : 'cadastrar-cliente', component : CadastrarClienteComponent }, 
@@ -22,14 +26,16 @@ const appRoutes : Routes = [
   declarations: [
     AppComponent,
     CadastrarClienteComponent,
-    ConsultarClienteComponent
+    ConsultarClienteComponent,
+    EdicaoClienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes), //registrando as rotas
     FormsModule, //registrando a biblioteca de formulários 
-    ReactiveFormsModule //registrando a biblioteca de formulários
+    ReactiveFormsModule, //registrando a biblioteca de formulários
+    HttpClientModule //realizar chamadas HTTP para API
   ],
   providers: [],
   bootstrap: [AppComponent]
