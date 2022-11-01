@@ -27,7 +27,9 @@ const appRoutes : Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes) //registrando as rotas
+    RouterModule.forRoot(appRoutes), //registrando as rotas
+    FormsModule, //registrando a biblioteca de formulários 
+    ReactiveFormsModule //registrando a biblioteca de formulários
   ],
   providers: [],
   bootstrap: [AppComponent]
