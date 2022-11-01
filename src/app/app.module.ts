@@ -9,6 +9,9 @@ import { ConsultarClienteComponent } from './consultar-cliente/consultar-cliente
 //importando as bibliotecas de rotas do angular 
 import { RouterModule, Routes } from '@angular/router'; 
 
+//importando as bibliotecas para manipulação de formulários
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 //mapeando as rotas do projeto (caminhos para exibir componentes)
 const appRoutes : Routes = [ 
   { path : 'cadastrar-cliente', component : CadastrarClienteComponent }, 
