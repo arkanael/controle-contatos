@@ -1,0 +1,53 @@
+<div class="row mt-4">
+    <div class="col-md-4 offset-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <h5 class="card-title">Criar Conta de Usuário</h5>
+                    <p class="card-subtitle">Preeencha os campos para criar sua conta.</p>
+                </div>
+                <hr />
+                <form class="mt-1" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+                    <div class="mb-2"> 
+                        <label>Nome do usuário:</label>
+                        <input type="text" class="form-control" placeholder="Digite seu nome aqui" formControlName="nome" />
+                        <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                            <span *ngIf="form.nome.errors.required">Campo obrigatório</span>
+                            <span *ngIf="form.nome.errors.minLength">informe no mínimo 8 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="mb-2"> 
+                        <label>Email de acesso:</label> 
+                        <input type="text" class="form-control" placeholder="Digite seu email aqui" formControlName="email" /> 
+                        <div class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+                            <span *ngIf="form.email.errors.required">Campo obrigatório</span>
+                            <span *ngIf="form.email.errors.email">Informe um e-mail válido</span>
+                        </div>
+                    </div>
+                    <div class="mb-2"> 
+                        <label>Senha de acesso:</label> 
+                        <input type="password" class="form-control" placeholder="Digite sua senha aqui" formControlName="senha" /> 
+                        <div class="text-danger" *ngIf="form.senha.touched && form.senha.invalid">
+                            <span *ngIf="form.senha.errors.required">Campo obrigatório</span>
+                            <span *ngIf="form.senha.errors.minlength">informe no mínimo 8 caracteres</span>
+                            <span *ngIf="form.senha.errors.maxlength">informe no máximo 20 caracteres</span>
+                        </div>
+                    </div>
+                    <div class="mb-2"> 
+                        <label>Confirme sua senha:</label> 
+                        <input type="password" class="form-control" placeholder="Digite sua senha aqui" formControlName="senhaConfirmacao" /> 
+                        <div class="text-danger" *ngIf="form.senhaConfirmacao.touched && form.senhaConfirmacao.invalid">
+                            <span *ngIf="form.senhaConfirmacao.errors.required">Confirme sua senha</span>
+                            <span *ngIf="form.senhaConfirmacao.errors.MatchPassword"> Senhas não conferem, por favor verifique. </span>
+                        </div>
+                    </div>
+                    <div class="mb-2 d-grid"> 
+                        <input type="submit" [disabled]="!formRegister.valid" class="btn btn-primary btn-sm" value="Realizar Cadastro" /> 
+                    </div>
+                    <div class="mb-2 d-grid"> 
+                        <a [routerLink]="['/acessar-conta']" class="btn btn-light btn-sm"> Já possui conta? <strong>Acesse aqui!</strong> </a> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
