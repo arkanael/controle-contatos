@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -16,6 +16,29 @@ export class CadastrarClienteComponent implements OnInit {
   constructor(private httpCliente: HttpClient) { }
 
   ngOnInit(): void {
+  }
+
+  //criando o formulario
+  formCadastro = new FormGroup({
+    nome: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    cpf: new FormControl('', [Validators.required])
+  });
+
+  //função para retornar os controles do formulário
+  get form(): any{
+    return this.formCadastro.controls;
+  }
+
+  //função para capturar o submit do formulário
+  onSubmit(): void{
+    this.mensagem = "Processando requisição, por favor aguarde.";
+    this.mensagem = "submit feito.";
+    //imprimindo os valores
+    console.log(this.formCadastro.value);
+
+    //limpar o formulário
+    this.formCadastro.reset();
   }
 
   cadastrarCliente(formCadastro : NgForm){

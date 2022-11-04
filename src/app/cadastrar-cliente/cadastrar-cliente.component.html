@@ -1,23 +1,35 @@
 <h4>Formulário para Cadastro de Clientes</h4>
 <div class="row mt-4">
     <div class="col-md-4">
-        <form #formCadastro="ngForm" (submit)="cadastrarCliente(formCadastro)">
+        <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <label for="nomeCliente" class="form-label">Nome do Cliente:</label>
-              <input type="text" class="form-control" id="nomeCliente" placeholder="Digite aqui" name="nome" ngModel>
+              <input type="text" class="form-control" id="nomeCliente" placeholder="Digite aqui" formControlName="nome" name="nome" ngModel>
+                <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+                    <div *ngIf="form.nome.errors.required">Campo obrigatório</div>
+                    <div *ngIf="form.nome.errors.minlength">Campo deve ter no mínimo 6 caracteres</div>
+                    <div *ngIf="form.nome.errors.maxlength">Campo deve ter no máximo 150 caracteres</div>
+                </div>
             </div>
             <div class="mb-3">
               <label for="emailCliente" class="form-label">E-mail:</label>
-              <input type="email" class="form-control" id="emailCliente" placeholder="Digite aqui" name="email" ngModel>
+              <input type="email" class="form-control" id="emailCliente" placeholder="Digite aqui" formControlName="email" name="email" ngModel>
+              <div class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+                <div *ngIf="form.email.errors.required">Campo obrigatório</div>
+                <div *ngIf="form.email.errors.email">Campo deve ser e-mail válido</div>
+              </div>
             </div>
             <div class="mb-3">
                 <label for="cpfCliente" class="form-label">CPF:</label>
-                <input type="text" class="form-control" id="cpfCliente" placeholder="Digite aqui" name="cpf" ngModel>
-              </div>
-            <button type="submit" class="btn btn-success">Cadastrar Cliente</button>
+                <input type="text" class="form-control" id="cpfCliente" placeholder="Digite aqui" formControlName="cpf" name="cpf" ngModel>
+                <div class="text-danger" *ngIf="form.cpf.touched && form.cpf.invalid">
+                    <div *ngIf="form.cpf.errors.required">Campo obrigatório</div>
+                  </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!formCadastro.valid" >Cadastrar Cliente</button>
           </form>
     </div>
 </div>
-<div class="mt-3">
+<div class="mt-3 alert alert-success" *ngIf="mensagem">
     {{mensagem}}
 </div>
