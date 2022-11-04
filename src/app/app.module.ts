@@ -14,10 +14,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //importando a biblioteca utilizada para realizar as chamadas para a API import
 import { HttpClientModule } from '@angular/common/http';
+
 import { EdicaoClienteComponent } from './edicao-cliente/edicao-cliente.component';
+import { MenuPrincipalComponent } from './components/shared/menu-principal/menu-principal.component';
+import { LoginComponent } from './components/pages/account/login/login.component';
+import { RegisterComponent } from './components/pages/account/register/register.component';
+import { PasswordComponent } from './components/pages/account/password/password.component';
 
 //mapeando as rotas do projeto (caminhos para exibir componentes)
 const appRoutes : Routes = [ 
+  { path: '', pathMatch: 'full', redirectTo: 'acessar-conta' },
+  { path: 'acessar-conta', component: LoginComponent },
+  { path: 'criar-conta', component: RegisterComponent },
+  { path: 'recuperar-senha', component: PasswordComponent },
   { path : 'cadastrar-cliente', component : CadastrarClienteComponent }, 
   { path : 'consultar-cliente', component : ConsultarClienteComponent } 
 ];
@@ -27,7 +36,11 @@ const appRoutes : Routes = [
     AppComponent,
     CadastrarClienteComponent,
     ConsultarClienteComponent,
-    EdicaoClienteComponent
+    EdicaoClienteComponent,
+    MenuPrincipalComponent,
+    LoginComponent,
+    RegisterComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
