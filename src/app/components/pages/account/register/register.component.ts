@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordMatchValidator } from 'src/app/validators/password-match.validator';
-import { HttpClient } from '@angular/common/http';
+import { UsuarioService } from 'src/app/services/usuario.services';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +11,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
 
+  //atributos (campos que poderão acessar na página HTML)
+  mensagem_sucesso: string = '';
+  mensagem_erro: string = '';
+
   //declarar e inicializar o httpclient
-  constructor(private httpClient: HttpClient) { }
+  constructor(private usuarioService: UsuarioService, 
+              private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +32,7 @@ export class RegisterComponent implements OnInit {
    //incluir as validações customizadas para este formulário
    {
     validators: [PasswordMatchValidator.MatchPassword]
-    });
+  });
 
    //função para ler os campos do formulário
    get form():any{
@@ -35,22 +41,39 @@ export class RegisterComponent implements OnInit {
 
    //função para capturar p submit do formulário
    onSubmit():void{
+
+    //exibindo o Spinner
+    this.spinnerService.show()
+
+    //limpar as mensagens
+    this.mensagem_sucesso = '';
+    this.mensagem_erro = '';
+
     console.log(this.formRegister.value);
 
     //fazer uma requizição post para o serviço de cadastro de usuario
-    this.httpClient.post('http://localhost:64589/api/Register', 
-      this.formRegister.value
-    ).subscribe({
+    this.usuarioService.postRegister(this.formRegister.value).subscribe({
       
       //capturar o retorno de sucesso (HTTP 2xx)
       next:(response)=>{
         console.log(response);
         this.formRegister.reset();
+        this.spinnerService.hide();
       },
 
       //capturar o erro (HTTP 4xx, 5xx)
       error:(response)=>{
         console.log(response.error);
+        switch (response.status) {
+            case 422:
+              this.mensagem_erro = response.error.message;
+            break;
+            default:
+              this.mensagem_erro = 'Falha ao realizar cadastro, por favor tente mais tarde.';
+            break;
+          }
+
+          this.spinnerService.hide();
       }
     });
    }
