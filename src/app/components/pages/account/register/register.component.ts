@@ -56,9 +56,11 @@ export class RegisterComponent implements OnInit {
       
       //capturar o retorno de sucesso (HTTP 2xx)
       next:(response)=>{
-        console.log(response);
-        this.formRegister.reset();
         this.spinnerService.hide();
+        this.mensagem_sucesso = `Usuário cadastrado ${response.nome} com sucesso`
+        console.log(response);
+        console.log(this.mensagem_sucesso);
+        this.formRegister.reset();
       },
 
       //capturar o erro (HTTP 4xx, 5xx)

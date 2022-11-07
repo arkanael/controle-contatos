@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //importando a biblioteca utilizada para realizar as chamadas para a API import
 import { HttpClientModule } from '@angular/common/http';
+
+// ngx-spinner 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 import { EdicaoClienteComponent } from './edicao-cliente/edicao-cliente.component';
 import { MenuPrincipalComponent } from './components/shared/menu-principal/menu-principal.component';
@@ -48,7 +53,9 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes), //registrando as rotas
     FormsModule, //registrando a biblioteca de formulários 
     ReactiveFormsModule, //registrando a biblioteca de formulários
-    HttpClientModule //realizar chamadas HTTP para API
+    HttpClientModule, //realizar chamadas HTTP para API
+    BrowserAnimationsModule, // ngx-spinner 
+    NgxSpinnerModule // ngx-spinner 
   ],
   providers: [],
   bootstrap: [AppComponent]

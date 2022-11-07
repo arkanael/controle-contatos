@@ -16,7 +16,7 @@ export class UsuarioService{
 
     //função para executar a chamada de cadastro de usuario na api
     postRegister(data:any) :Observable<Usuario>{
-        return this.httpCliente.post<Usuario>(`${environment.apiContatos}/register`, data);
+        return this.httpCliente.post<Usuario>(`${environment.apiContatos}/api/register`, data);
     } 
 
 }
