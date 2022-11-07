@@ -48,6 +48,12 @@
                         <a [routerLink]="['/acessar-conta']" class="btn btn-light btn-sm"> Já possui conta? <strong>Acesse aqui!</strong> </a> </div>
                 </form>
             </div>
+            <div class="mt-3 text-success text-center" *ngIf="mensagem_sucesso">
+                <strong>{{mensagem_sucesso}}</strong>
+            </div>
+            <div class="mt-3 text-danger text-center" *ngIf="mensagem_erro">
+                <strong>{{mensagem_erro}}</strong>
+            </div>
         </div>
     </div>
 </div>
