@@ -22,7 +22,7 @@ export class UsuarioService{
 
     //função para executar a chamada de login de usuario na API
     postLogin(data: any): Observable<Auth>{
-        return this.httpCliente.post<Auth>(`${environment.apiContatos}/api/login`, data);
+        return this.httpCliente.post<Auth>(`${environment.apiContatos}/api/usuarios/login`, data);
     }
 
 }
