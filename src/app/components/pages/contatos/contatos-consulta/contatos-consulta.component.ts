@@ -14,7 +14,8 @@ export class ContatosConsultaComponent implements OnInit {
   contatos: Contato[] = [];
   pagina: number = 1;
   filtro: any = { nome: '' };
-  
+  mensagem : string = "";
+
   constructor(private contatoService: ContatoService, private spinnersService: NgxSpinnerService) { }
 
   //metodo que executar antes do component carregar
@@ -40,4 +41,22 @@ export class ContatosConsultaComponent implements OnInit {
     this.pagina = event; 
   }
 
+  onDelete(idContato: string): void {
+    if(window.confirm('Deseja realmente excluir o contato selecionado?')){
+      this.spinnersService.show();
+
+      this.contatoService.deleteContatos(idContato).subscribe({
+        next: (response) => {
+          this.mensagem = "Contato excluido com sucesso.";
+          this.spinnersService.hide();
+          this.ngOnInit();
+        },
+        error: (response) => {
+          console.log(response)
+          this.mensagem = "Não foi possível ralizar a exclusão do contato.";
+          this.spinnersService.hide();
+        }
+      });
+    }
+  }
 }
