@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { UsuarioService } from 'src/app/services/usuario.services';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
@@ -8,7 +9,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class PasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuarioService: UsuarioService, private spinnerService:NgxSpinnerService) { }
+
+  mensagem : string = "";
 
   ngOnInit(): void {
   }
@@ -23,7 +26,20 @@ export class PasswordComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log(this.formPassword.value);
-  }
+    this.mensagem = "";
+    this.spinnerService.show();
 
+    this.usuarioService.postasword(this.formPassword.value).subscribe({
+      next: (response) => {
+        this.mensagem = "Recuperação de senha realizada com sucesso.";
+        this.spinnerService.hide();
+
+      },
+      error: (response) => {
+        console.log(response);
+        this.mensagem = "Não foi possível realizar a recuperação de senha.";
+        this.spinnerService.hide();
+      }
+    });
+  }
 }

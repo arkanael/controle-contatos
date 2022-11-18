@@ -25,4 +25,9 @@ export class UsuarioService{
         return this.httpCliente.post<Auth>(`${environment.apiContatos}/api/usuarios/login`, data);
     }
 
+    //metoddo para executar a chamada de recuperação de senha do usuario da api
+    postasword(data: any): Observable<any>{
+        return this.httpCliente.post<Usuario>(`${environment.apiContatos}/api/usuarios/password`, data);
+    }
+
 }
