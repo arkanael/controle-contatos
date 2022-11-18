@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Auth } from "../models/auth.model";
 
 @Injectable({providedIn: 'root'})
-export class AuhHelper{
+export class AuthHelper{
 
     //função para gravar os dados do usuário autenticado ma local storage do navegador
     singIn(auth: Auth) : void {
@@ -28,11 +28,13 @@ export class AuhHelper{
             //retornando o objeto
             return auth;
         }else{
+
+            //retornar vazio
             return null;
         }
     }
 
-    //fução para apagar o conteudo gravado do usuário na local storage 
+    //função para apagar o conteudo gravado do usuário na local storage 
     signOut(): void{
         //apagar o conteudo da local storage
         localStorage.removeItem("auth_data");
